@@ -59,7 +59,7 @@ router.put('/:id', async (request, response) => {
 })
 
 // Route to save a new book
-router.post('/:id', async (request, response) => {
+router.post('/', async (request, response) => {
     try {
         if (
             !request.body.title ||

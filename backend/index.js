@@ -4,8 +4,10 @@ import mongoose from "mongoose";
 import cors from "cors";
 
 import booksRoute from "./routes/booksRoute.js";
+import transactionRoute from "./routes/transactionsRoute.js"
 
 import { Book } from "./models/bookModel.js";
+import { Transaction } from "./models/transactionModel.js";
 
 const app = express();
 
@@ -32,6 +34,9 @@ app.get('/', (request, response) => {
 
 // Middleware for handling routes regarding book schema
 app.use("/books", booksRoute);
+
+// Middleware for handling routes regarding transaction schema
+app.use("/transactions", transactionRoute);
 
 mongoose
     .connect(mongoDBURL)
