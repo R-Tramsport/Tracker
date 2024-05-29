@@ -19,7 +19,7 @@ router.get('/', async (request, response) => {
 });
 
 // Route to get book from database by id
-router.get('/', async (request, response) => {
+router.get('/:id', async (request, response) => {
     try {
         const { id } = request.params;
         const book = await Book.findById(id);
@@ -32,7 +32,7 @@ router.get('/', async (request, response) => {
 });
 
 // Route to update a book in the database by id
-router.put('/', async (request, response) => {
+router.put('/:id', async (request, response) => {
     try {
         if (
             !request.body.title ||
@@ -59,7 +59,7 @@ router.put('/', async (request, response) => {
 })
 
 // Route to save a new book
-router.post('/', async (request, response) => {
+router.post('/:id', async (request, response) => {
     try {
         if (
             !request.body.title ||
@@ -85,7 +85,7 @@ router.post('/', async (request, response) => {
 });
 
 // Route to delete a book in the database by id
-router.delete('/', async (request, response) => {
+router.delete('/:id', async (request, response) => {
     try {
         const { id } = request.params;
         const result = await Book.findByIdAndDelete(id);
