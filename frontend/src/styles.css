@@ -1,0 +1,125 @@
+.navbar {
+    background-color: #37718E;
+    padding: 10px;
+}
+
+.title {
+    font-weight: bold;
+    font-size: x-large;
+    color: aliceblue;
+}
+
+.body {
+    padding: 30px;
+    background-color: rgb(243, 243, 243);
+}
+
+.grid {
+    display: grid;
+    gap: 1px;
+    grid-template-columns: 2fr 1fr;
+    margin: 0 0 0 0;
+}
+
+.shadow {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.header1 {
+    color: black;
+    text-align: left;
+    font-size: xx-large;
+}
+.header2 {
+    color: black;
+    text-align: left;
+    font-size: x-large;
+}
+.header3 {
+    color: black;
+    text-align: left;
+    font-size: medium;
+}
+
+.container {
+    display: flex;
+    background-color: white;
+    padding: 5px;
+}
+
+.rounded {
+    border-radius: 20px;
+}
+
+.row {
+    flex-direction: row;
+}
+.col {
+    flex-direction: column;
+}
+
+.apart {
+    justify-content: space-between;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.large {
+    width: 50%;
+}
+
+.small {
+    width: 20%;
+}
+
+.add-button {
+    background-color: #bcffd0;
+    width: 80px;
+    border-radius: 90px;
+    font-size: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 5px;
+}
+
+.add-button:hover {
+    background-color: #5EFC8D;
+}
+
+.edit {
+    background-color: #8EE3EF;
+    border-radius: 90px;
+    font-size: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 5px;
+}
+
+.edit:hover {
+    background-color: #37718E;
+}
+
+.delete {
+    background-color: rgb(255, 120, 120);
+    border-radius: 90px;
+    font-size: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 5px;
+}
+
+.delete:hover {
+    background-color: red;
+}
+
+.button {
+    background-color: rgb(214, 214, 214);
+    width: 80px;
+    border-radius: 90px;
+    font-size: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 5px;
+}
+
+.button:hover {
+    background-color: white;
+}
