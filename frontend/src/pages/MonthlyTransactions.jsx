@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import '../styles.css';
 
@@ -7,10 +7,27 @@ import MonthHeader from '../components/View Month/MonthHeader';
 import ExpenseTable from "../components/View Month/ExpenseTable";
 import AddExpenseModal from '../components/View Month/AddExpenseModal';
 import IncomeTable from '../components/View Month/IncomeTable';
+import Spinner from "../components/Spinner";
+import axios from 'axios';
 
 const MonthlyTransactions = () => {
     const [showModal, setShowModal] = useState(false);
-
+    const [transactions, setTransactions] = useState([]);
+    const [loading, setLoading] = useState(false);
+    // Get Transactions
+    useEffect(() => {
+        setLoading(true);
+        axios
+            .get("http://localhost:5555/transactions")
+            .then((response) => {
+                setTransactions(response.data.data);
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.log(error);
+                setLoading(false);
+            })
+    }, []);
     return (
         <div>
             <NavBar />
@@ -30,7 +47,7 @@ const MonthlyTransactions = () => {
                             onClick={() => setShowModal(true)}
                         >Add Expenses</button>
                     </div>
-                    <ExpenseTable />
+                    {loading ? <Spinner /> : <ExpenseTable trans={transactions} />}
                 </div>
                 {/* Monthly Income */}
                 <div className='rounded container col shadow'>

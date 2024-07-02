@@ -13,6 +13,7 @@ import MonthlyTransactions from "./pages/MonthlyTransactions";
 const App = () => {
   return(
     <Routes>
+      {/* <Route path="/" element={<Home />} /> */}
       <Route path="/" element={<MonthlyTransactions />} />
       <Route path="/books/create" element={<CreateBook />} />
       <Route path="/books/details/:id" element={<ShowBook />} />

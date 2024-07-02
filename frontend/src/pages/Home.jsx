@@ -27,6 +27,7 @@ const Home = () => {
                 setLoading(false);
             })
     }, []);
+    console.log(books)
     return (
         <div className="p-4">
             <div className="flex justify-center items-center gap-x-4">

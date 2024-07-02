@@ -1,58 +1,60 @@
+import React, {useState} from "react";
+import axios from "axios";
+
 import '../../styles.css';
 
-const ExpenseTable = () => {
-    const test1 = {
-        date: "05/01/2024",
-        title: "Frangos",
-        description: "Half chicken combo",
-        category: "Food & Drink",
-        amount: 16,
-        special: true,
-    };
-    const test2 = {
-        date: "05/01/2024",
-        title: "El Jannah",
-        description: "Half chicken combo",
-        category: "Food & Drink",
-        amount: 18,
-        special: true,
-    };
-    
-    const data1 = [test1, test2, test1, test2];
+const ExpenseTable = ({trans}) => {
+    const handleDeleteTransaction = (id) => {
+        axios
+        .delete(`http://localhost:5555/transactions/${id}`)
+        .catch((error) => {
+            alert("An error occured. Please check console.");
+            console.log(error);
+        })
+    }
+
     return (
         <table>
-            <tr>
-                <td>Date</td>
-                <td>Title</td>
-                <td>Description</td>
-                <td>Category</td>
-                <td className='text-right'>Amount</td>
-                <td className='text-right'>Special</td>
-                <td className='text-right'>Edit/Delete</td>
-            </tr>
-            <tr>
-                <td><hr class='solid' /></td>
-                <td><hr class='solid' /></td>
-                <td><hr class='solid' /></td>
-                <td><hr class='solid' /></td>
-                <td><hr class='solid' /></td>
-                <td><hr class='solid' /></td>
-                <td><hr class='solid' /></td>
-            </tr>
-            {data1.map( (test) => (
+            <thead>
                 <tr>
-                    <td>{test.date}</td>
-                    <td>{test.title}</td>
-                    <td>{test.description}</td>
-                    <td>{test.category}</td>
-                    <td className='text-right'>{test.amount}</td>
-                    <td className='text-right'>{test.special}</td>
-                    <td style={{display: "flex", justifyContent: "right"}}>
-                        <button className='edit'>Edit</button>
-                        <button className='delete'>Delete</button>
-                    </td>
+                    <th>Date</th>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Category</th>
+                    <th className='text-right'>Amount</th>
+                    <th className='text-right'>Special</th>
+                    <th className='text-right'>Edit/Delete</th>
                 </tr>
-            ))}
+                <tr>
+                    <td><hr class='solid' /></td>
+                    <td><hr class='solid' /></td>
+                    <td><hr class='solid' /></td>
+                    <td><hr class='solid' /></td>
+                    <td><hr class='solid' /></td>
+                    <td><hr class='solid' /></td>
+                    <td><hr class='solid' /></td>
+                </tr>
+            </thead>
+            <tbody>
+                {trans.map( (transaction, index) => (
+                    <tr key={transaction._id}>
+                        <td>{transaction.createdAt}</td>
+                        <td>{transaction.title}</td>
+                        <td>{transaction.description}</td>
+                        <td>{transaction.category}</td>
+                        <td className='text-right'>{transaction.amount}</td>
+                        <td className='text-right'>{index + 1}</td>
+                        <td style={{display: "flex", justifyContent: "right"}}>
+                            <button className='edit'>Edit</button>
+                            <button 
+                                className='delete'
+                                onClick={() => handleDeleteTransaction(transaction._id)}
+                            >Delete</button>
+                        </td>
+                    </tr>
+                ))}
+            </tbody>
+
         </table>
     )
 }

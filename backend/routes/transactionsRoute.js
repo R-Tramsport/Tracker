@@ -49,7 +49,7 @@ router.post('/', async (request, response) => {
             category: request.body.category,
             amount: request.body.amount,
             type: request.body.type,
-            isSpecial: request.body.false
+            isSpecial: request.body.isSpecial
         };
 
         const transaction = await Transaction.create(newTransaction);
