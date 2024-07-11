@@ -3,10 +3,13 @@ import axios from "axios";
 
 import '../../styles.css';
 
-const ExpenseTable = ({trans}) => {
+const ExpenseTable = ({trans}, onOpen) => {
     const handleDeleteTransaction = (id) => {
         axios
         .delete(`http://localhost:5555/transactions/${id}`)
+        ,then((response) => {
+            alert("Expense deleted.")
+        })
         .catch((error) => {
             alert("An error occured. Please check console.");
             console.log(error);
@@ -43,9 +46,9 @@ const ExpenseTable = ({trans}) => {
                         <td>{transaction.description}</td>
                         <td>{transaction.category}</td>
                         <td className='text-right'>{transaction.amount}</td>
-                        <td className='text-right'>{index + 1}</td>
+                        {transaction.isSpecial ? <td className='text-right'>True</td> : <td className='text-right'>False</td>}
                         <td style={{display: "flex", justifyContent: "right"}}>
-                            <button className='edit'>Edit</button>
+                            <button className='edit' onClick={onOpen}>Edit</button>
                             <button 
                                 className='delete'
                                 onClick={() => handleDeleteTransaction(transaction._id)}
@@ -54,7 +57,6 @@ const ExpenseTable = ({trans}) => {
                     </tr>
                 ))}
             </tbody>
-
         </table>
     )
 }

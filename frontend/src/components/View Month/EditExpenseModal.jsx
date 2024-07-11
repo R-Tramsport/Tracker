@@ -4,50 +4,29 @@ import { AiOutlineClose } from "react-icons/ai";
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
-const AddExpenseModal = ({ expense, onClose }) => {
+const EditExpenseModal = ({ expense, onClose }) => {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [category, setCategory] = useState("");
     const [amount, setAmount] = useState(0);
-
-    const handleSubmit = () => {
-        const data = {
-            title,
-            description,
-            category,
-            amount,
-            "type": "Expense",
-            "isSpecial": false
-        }
-        axios
-            .post(`http://localhost:5555/transactions/`, data)
-            .then((response) => {
-                onClose();
-                alert("Expense added");
-            })
-            .catch((error) => {
-                alert("An error occured. Please check console.");
-                console.log(error);
-            })
-        }
         
-        const handleEdit = async (id) => {
-            const response = await axios.get(`http://localhost:5555/transactions/${id}`);
-            setTitle(response.title);
-            setDescription(response.description);
-            setCategory(response.category);
-            setAmount(response.amount);
-            
-            axios
-            .put(`http://localhost:5555/transactions/${id}`)
-            .then((response) => {
-                onClose();
-                alert("Expense edited");
-            })
-            .catch((error) => {
-                alert("An error occured. Please check console.");
-                console.log(error);
-            })
+    const handleEdit = async (id) => {
+        const response = await axios.get(`http://localhost:5555/transactions/${id}`);
+        setTitle(response.title);
+        setDescription(response.description);
+        setCategory(response.category);
+        setAmount(response.amount);
+        
+        axios
+        .put(`http://localhost:5555/transactions/${id}`)
+        .then((response) => {
+            onClose();
+            alert("Expense edited");
+        })
+        .catch((error) => {
+            alert("An error occured. Please check console.");
+            console.log(error);
+        })
     }
     
 
@@ -66,7 +45,7 @@ const AddExpenseModal = ({ expense, onClose }) => {
                     onClick={onClose}
                 />
                 <h2>
-                    Add Expense
+                    Edit Expense
                 </h2>
                 <div>
                     Title
@@ -100,10 +79,10 @@ const AddExpenseModal = ({ expense, onClose }) => {
                         onChange={(e) => setAmount(e.target.value)}
                     />
                 </div>
-                <button onClick={() => handleSubmit()}>Submit</button>
+                <button onClick={() => console.log("Hello World")}>Submit</button>
             </div>
         </div>
     )
 }
 
-export default AddExpenseModal;
+export default EditExpenseModal;
