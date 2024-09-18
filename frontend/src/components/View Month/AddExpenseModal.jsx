@@ -54,53 +54,90 @@ const AddExpenseModal = ({ expense, onClose }) => {
     return (
         <div 
             className="fixed top-0 left-0 right-0 bottom-0 z-50 flex justify-center items-center"
-            style={{backgroundColor: "black", opacity: "0.9"}}
+            style={{backgroundColor: "rgba(0, 0, 0, 0.8)"}}
             onClick={onClose}    
         >
             <div
                 onClick={(event) => event.stopPropagation()}
                 className="w-[600px] max-w-full -[400px] bg-white rounded-xl p-4 flex flex-col relative"
+                style={{opacity: "1.0"}}
             >
                 <AiOutlineClose
                     className="absolute right-6 top-6 text-3xl text-red-600 cursor-pointer"
                     onClick={onClose}
                 />
-                <h2>
+                <h2
+                    className="header2"
+                >
                     Add Expense
                 </h2>
-                <div>
-                    Title
-                    <input 
-                        name="title" 
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                    />
+                <table>
+                    <tr>
+                        <td>
+                            <div className="label">Title</div>    
+                        </td>
+                        <td>
+                            <input 
+                                name="title"
+                                className="input"
+                                placeholder="e.g. Frangos"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div className="label">Description</div>    
+                        </td>
+                        <td>
+                            <input 
+                            Description
+                                name="description" 
+                                className="input" 
+                                placeholder="e.g. Half Chicken Combo"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div className="label">Category</div>    
+                        </td>
+                        <td>
+                            <input 
+                                name="category" 
+                                className="input" 
+                                placeholder="e.g. Food & Drink"
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)}
+                            />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div className="label">Amount</div>    
+                        </td>
+                        <td>
+                            <input 
+                                name="amount" 
+                                className="input" 
+                                placeholder="e.g. 16"
+                                value={amount}
+                                onChange={(e) => setAmount(e.target.value)}
+                            />
+                        </td>
+                    </tr>
+                </table>
+                <div
+                    style={{display: 'flex', justifyContent: 'center'}}
+                >
+                    <button 
+                        onClick={() => handleSubmit()}
+                        className="add-button"
+                    >Submit</button>
                 </div>
-                <div>
-                    Description
-                    <input 
-                        name="description" 
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                    />
-                </div>
-                <div>
-                    Category
-                    <input 
-                        name="category" 
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                    />
-                </div>
-                <div>
-                    Amount
-                    <input 
-                        name="amount" 
-                        value={amount}
-                        onChange={(e) => setAmount(e.target.value)}
-                    />
-                </div>
-                <button onClick={() => handleSubmit()}>Submit</button>
             </div>
         </div>
     )
