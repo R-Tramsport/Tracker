@@ -72,63 +72,65 @@ const AddExpenseModal = ({ expense, onClose }) => {
                     Add Expense
                 </h2>
                 <table>
-                    <tr>
-                        <td>
-                            <div className="label">Title</div>    
-                        </td>
-                        <td>
-                            <input 
-                                name="title"
-                                className="input"
-                                placeholder="e.g. Frangos"
-                                value={title}
-                                onChange={(e) => setTitle(e.target.value)}
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div className="label">Description</div>    
-                        </td>
-                        <td>
-                            <input 
-                            Description
-                                name="description" 
-                                className="input" 
-                                placeholder="e.g. Half Chicken Combo"
-                                value={description}
-                                onChange={(e) => setDescription(e.target.value)}
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div className="label">Category</div>    
-                        </td>
-                        <td>
-                            <input 
-                                name="category" 
-                                className="input" 
-                                placeholder="e.g. Food & Drink"
-                                value={category}
-                                onChange={(e) => setCategory(e.target.value)}
-                            />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div className="label">Amount</div>    
-                        </td>
-                        <td>
-                            <input 
-                                name="amount" 
-                                className="input" 
-                                placeholder="e.g. 16"
-                                value={amount}
-                                onChange={(e) => setAmount(e.target.value)}
-                            />
-                        </td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div className="label">Title</div>    
+                            </td>
+                            <td>
+                                <input 
+                                    name="title"
+                                    className="input"
+                                    placeholder="e.g. Frangos"
+                                    value={title}
+                                    onChange={(e) => setTitle(e.target.value)}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div className="label">Description</div>    
+                            </td>
+                            <td>
+                                <input 
+                                Description
+                                    name="description" 
+                                    className="input" 
+                                    placeholder="e.g. Half Chicken Combo"
+                                    value={description}
+                                    onChange={(e) => setDescription(e.target.value)}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div className="label">Category</div>    
+                            </td>
+                            <td>
+                                <input 
+                                    name="category" 
+                                    className="input" 
+                                    placeholder="e.g. Food & Drink"
+                                    value={category}
+                                    onChange={(e) => setCategory(e.target.value)}
+                                />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div className="label">Amount</div>    
+                            </td>
+                            <td>
+                                <input 
+                                    name="amount" 
+                                    className="input" 
+                                    placeholder="e.g. 16"
+                                    value={amount}
+                                    onChange={(e) => setAmount(e.target.value)}
+                                />
+                            </td>
+                        </tr>
+                    </tbody>
                 </table>
                 <div
                     style={{display: 'flex', justifyContent: 'center'}}

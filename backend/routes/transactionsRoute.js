@@ -7,15 +7,31 @@ const router = express.Router();
 router.get('/', async (request, response) => {
     try {
         const transactions = await Transaction.find({});
+        let expenses = [];
+        let income = [];
+        for (let tran of transactions) {
+            if (tran.type == "Expense") { expenses.push(tran); }
+            else { income.push(tran); }
+        }
         return response.status(200).json({
             count: transactions.length,
-            data: transactions
+            data: {
+                expenses : { 
+                    count: expenses.length,
+                    transactions: expenses
+                },
+                income : {
+                    count: income.length,
+                    transactions: income
+                }
+            }
         });
     } catch (error) {
         console.log(error.message);
         response.status(500).send({message: error.message});
     }
 });
+
 
 // GET a transaction from the database by ID
 router.get('/:id', async (request, response) => {
