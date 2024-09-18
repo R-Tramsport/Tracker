@@ -16,9 +16,10 @@ const MonthlyTransactions = () => {
     const [showModal, setShowModal] = useState(false);
     const [showIModal, setShowIModal] = useState(false);
     const [showEModal, setShowEModal] = useState(false);
-    const [transactions, setTransactions] = useState([]);
     const [expenses, setExpenses] = useState([]);
+    const [expenseTotal, setExpenseTotal] = useState(0);
     const [income, setIncome] = useState([]);
+    const [incomeTotal, setIncomeTotal] = useState(0);
     const [loading, setLoading] = useState(false);
     // Get Transactions
     useEffect(() => {
@@ -28,7 +29,9 @@ const MonthlyTransactions = () => {
             .then((response) => {
                 // setTransactions(response.data.data);
                 setExpenses(response.data.data.expenses.transactions);
+                setExpenseTotal(response.data.data.expenses.total);
                 setIncome(response.data.data.income.transactions);
+                setIncomeTotal(response.data.data.income.total);
                 setLoading(false);
             })
             .catch((error) => {
@@ -47,7 +50,7 @@ const MonthlyTransactions = () => {
                     <button className='button'>Next Month</button>
                 </div>
                 {/* Month Heading */}
-                <MonthHeader />
+                <MonthHeader exp={expenseTotal} inc={incomeTotal} total={incomeTotal-expenseTotal} />
                 {/* Monthly Expenses */}
                 <div className='rounded container col shadow' style={{marginBottom: "50px"}}>
                     <div className='container apart'>

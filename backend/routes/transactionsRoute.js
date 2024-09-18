@@ -9,22 +9,66 @@ router.get('/', async (request, response) => {
         const transactions = await Transaction.find({});
         let expenses = [];
         let income = [];
+        let totalExp = 0;
+        let totalInc = 0;
         for (let tran of transactions) {
-            if (tran.type == "Expense") { expenses.push(tran); }
-            else { income.push(tran); }
+            if (tran.type == "Expense") { expenses.push(tran); totalExp += tran.amount; }
+            else { income.push(tran); totalInc += tran.amount; ; }
         }
         return response.status(200).json({
             count: transactions.length,
             data: {
                 expenses : { 
                     count: expenses.length,
-                    transactions: expenses
+                    transactions: expenses,
+                    total: totalExp
                 },
                 income : {
                     count: income.length,
-                    transactions: income
-                }
+                    transactions: income,
+                    total: totalInc
+                },
+                total: totalInc - totalExp
             }
+        });
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({message: error.message});
+    }
+});
+
+// GET ALL EXPENSES from database
+router.get('/expenses', async (request, response) => {
+    try {
+        const transactions = await Transaction.find({});
+        let expenses = [];
+        let total = 0;
+        for (let tran of transactions) {
+            if (tran.type == "Expense") { expenses.push(tran); total += tran.amount; }
+        }
+        return response.status(200).json({
+            count: expenses.length,
+            data: expenses,
+            total: total
+        });
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({message: error.message});
+    }
+});
+// GET ALL INCOME from database
+router.get('/income', async (request, response) => {
+    try {
+        const transactions = await Transaction.find({});
+        let income = [];
+        let total = 0;
+        for (let tran of transactions) {
+            if (tran.type == "Income") { income.push(tran); total += tran.amount; }
+        }
+        return response.status(200).json({
+            count: income.length,
+            data: income,
+            total: total
         });
     } catch (error) {
         console.log(error.message);

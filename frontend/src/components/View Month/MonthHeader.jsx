@@ -1,6 +1,6 @@
 import '../../styles.css';
 
-const MonthHeader = () => {
+const MonthHeader = ({exp, inc, total}) => {
     return (
         <div className='rounded container apart shadow' style={{marginBottom: "50px"}}>
             <div className='header1' style={{flex: "3", flexDirection: "column", justifyContent: "center"}}>January, 2024</div>
@@ -8,11 +8,11 @@ const MonthHeader = () => {
                 <table>
                     <tr>
                         <td className='header3 text-right'>Monthly Income:</td>
-                        <td className='header3 text-right'>1000</td>
+                        <td className='header3 text-right'>{inc}</td>
                     </tr>
                     <tr>
                         <td className='header3 text-right'>Monthly Expenses:</td>
-                        <td className='header3 text-right'>1000</td>
+                        <td className='header3 text-right'>{exp}</td>
                     </tr>
                     <tr>
                         <td>
@@ -24,7 +24,7 @@ const MonthHeader = () => {
                     </tr>
                     <tr>
                         <td className='header3 text-right'>Monthly Profit:</td>
-                        <td className='header3 text-right'>1000</td>
+                        <td className='header3 text-right'>{total}</td>
                     </tr>
                 </table>
             </div>
