@@ -21,6 +21,7 @@ const MonthlyTransactions = () => {
     const [income, setIncome] = useState([]);
     const [incomeTotal, setIncomeTotal] = useState(0);
     const [loading, setLoading] = useState(false);
+    
     // Get Transactions
     useEffect(() => {
         setLoading(true);
@@ -39,8 +40,6 @@ const MonthlyTransactions = () => {
                 setLoading(false);
             })
     }, []);
-    console.log(expenses)
-    console.log(income)
     return (
         <div>
             <NavBar />

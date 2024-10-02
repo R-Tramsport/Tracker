@@ -13,7 +13,7 @@ router.get('/', async (request, response) => {
         let totalInc = 0;
         for (let tran of transactions) {
             if (tran.type == "Expense") { expenses.push(tran); totalExp += tran.amount; }
-            else { income.push(tran); totalInc += tran.amount; ; }
+            else { income.push(tran); totalInc += tran.amount; }
         }
         return response.status(200).json({
             count: transactions.length,
@@ -76,6 +76,43 @@ router.get('/income', async (request, response) => {
     }
 });
 
+// GET transactions spanning a given month
+router.get('/month', async (request, response) => {
+    try {
+        const month = request.query.month;
+        const year = request.query.year;
+        const from = new Date(Number(year) + '-' + Number(month) + "-01").toISOString();
+        const to = new Date(Number(year) + '-' + (Number(month) + 1) + "-01").toISOString();
+        const transactions = await Transaction.find({createdAt: {$gt: from, $lt: to}});
+        let expenses = [];
+        let income = [];
+        let totalExp = 0;
+        let totalInc = 0;
+        for (let tran of transactions) {
+            if (tran.type == "Expense") { expenses.push(tran); totalExp += tran.amount; }
+            else { income.push(tran); totalInc += tran.amount; }
+        }
+        return response.status(200).json({
+            count: transactions.length,
+            data: {
+                expenses : { 
+                    count: expenses.length,
+                    transactions: expenses,
+                    total: totalExp
+                },
+                income : {
+                    count: income.length,
+                    transactions: income,
+                    total: totalInc
+                },
+                total: totalInc - totalExp
+            }
+        });
+    } catch (error) {
+        console.log(error.message);
+        response.status(500).send({message: error.message});
+    }
+});
 
 // GET a transaction from the database by ID
 router.get('/:id', async (request, response) => {
@@ -88,6 +125,7 @@ router.get('/:id', async (request, response) => {
         response.status(500).send({message: error.message});
     }
 });
+
 
 // POST a new transaction to the database
 router.post('/', async (request, response) => {
