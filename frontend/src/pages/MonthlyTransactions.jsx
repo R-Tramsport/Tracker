@@ -31,7 +31,7 @@ const MonthlyTransactions = () => {
     useEffect(() => {
         setLoading(true);
         axios
-            .get("http://localhost:5555/transactions/month?month=" + month + "09&year=" + year)
+            .get("http://localhost:5555/transactions/month?month=" + Number(month) + "&year=" + Number(year))
             .then((response) => {
                 // setTransactions(response.data.data);
                 setExpenses(response.data.data.expenses.transactions);
