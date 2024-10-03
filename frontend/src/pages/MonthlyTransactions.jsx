@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Routes, Route, Outlet, useParams, useMatch } from "react-router-dom";
 
 import '../styles.css';
 
@@ -13,6 +14,10 @@ import Spinner from "../components/Spinner";
 import axios from 'axios';
 
 const MonthlyTransactions = () => {
+    const match = useMatch("/month/:month/:year");
+    const month = match?.params.month;
+    const year = match?.params.year;
+
     const [showModal, setShowModal] = useState(false);
     const [showIModal, setShowIModal] = useState(false);
     const [showEModal, setShowEModal] = useState(false);
@@ -26,7 +31,7 @@ const MonthlyTransactions = () => {
     useEffect(() => {
         setLoading(true);
         axios
-            .get("http://localhost:5555/transactions")
+            .get("http://localhost:5555/transactions/month?month=" + month + "09&year=" + year)
             .then((response) => {
                 // setTransactions(response.data.data);
                 setExpenses(response.data.data.expenses.transactions);
@@ -49,7 +54,7 @@ const MonthlyTransactions = () => {
                     <button className='button'>Next Month</button>
                 </div>
                 {/* Month Heading */}
-                <MonthHeader exp={expenseTotal} inc={incomeTotal} total={incomeTotal-expenseTotal} />
+                <MonthHeader month={Number(month)} year={Number(year)} exp={expenseTotal} inc={incomeTotal} total={incomeTotal-expenseTotal} />
                 {/* Monthly Expenses */}
                 <div className='rounded container col shadow' style={{marginBottom: "50px"}}>
                     <div className='container apart'>

@@ -41,7 +41,7 @@ const IncomeTable = ({trans}, onOpen) => {
             <tbody>
                 {trans.map( (transaction, index) => (
                     <tr key={transaction._id}>
-                        <td>{transaction.createdAt}</td>
+                        <td>{transaction.createdAt.slice(0, 10).split("-").reverse().join('/')}</td>
                         <td>{transaction.title}</td>
                         <td>{transaction.description}</td>
                         <td>{transaction.category}</td>
